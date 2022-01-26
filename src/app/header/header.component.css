@@ -1,0 +1,18 @@
+header {
+  height: 80px;
+  background-color: rgb(20, 19, 20);
+}
+
+.logo {
+  margin: 0;
+  width: 30%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.logo img {
+  width: 45px;
+  height: 45px;
+  margin-top: 15px;
+}

@@ -1,4 +1,4 @@
-<!--PREENCHER ESSE HTML COM TODOS OS DADOS Q VC GOSTARIA DE MOSTRAR COM DETALHES NA TELA, USANDO POKEMONAPI COMO MODELO BASE-->
+<!--PAGINA QUE RENDERIZA O CARD DO POKEMON E SEUS DETALHES-->
 <div *ngIf="pokemonAPI != undefined" class="pai flip-container">
   <div class="flipper">
     <div class="pokemon front">
@@ -19,7 +19,7 @@
         [class]="'pokemon-tipo__dif--' + tipo.type.name.toLowerCase()">{{tipo.type.name}}</div>
       </div>
 
-    </div>
+    </div> <!--fecha pokemon front-->
 
     <div class="pokemon-status back">
       <ul>
@@ -33,9 +33,16 @@
         
       </ul>
       <span>Força total: {{pokemonTotal}}</span>
-    </div>
-  </div>   
-</div>
+      <div class="bg-fundo"></div>
+    </div> <!--fecha pokemon-status-->
+  </div>   <!--fecha flipper-->
+
+  <div class="detalhes">
+    <p>THIAGO É UM GAROTO XUXA QUE GOSTA DE CUBYM</p>
+    <span>JASSA MAFRIEND</span>
+  </div>
+
+</div> <!--fecha pai-->
 
 
 

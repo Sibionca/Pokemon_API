@@ -45,6 +45,7 @@ export class PokemonsComponent{
 
       }
     )
+      // PUXA OS STATUS E ATRIBUI AS INFORMAÇÕES PARA O PROGRASSBAR PARA ATÉ 200
       setTimeout(() => {
         for (let i = 0; i < this.pokemonAPI.stats.length; i++) {
           var valorBase = this.pokemonAPI.stats[i].base_stat;

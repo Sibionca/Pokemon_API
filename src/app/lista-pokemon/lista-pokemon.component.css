@@ -123,6 +123,7 @@ mat-icon:hover {
   margin-left: 50px;
   margin-top: 50px;
   padding: 30px;
+  border: solid 3px;
 }
 
 .PaiComparacao-on {

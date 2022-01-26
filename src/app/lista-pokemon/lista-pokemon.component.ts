@@ -46,20 +46,24 @@ export class ListaPokemonComponent {
     )
   }
 
+
+  //PUXA O ID DO POKEMON NA LISTA E ABRE O DIALOG COM O POKEMON ESPECIFICO
   abrirStats(id:number){
     this.pokemonService.pokemonSelecionado = id;
     const dialogRef = this.dialog.open(DialogComponent);
     //dialogRef.componentInstance.pokemonId = id;
   }
 
+  //PUXA O POKEMON ATRAVÉS DO NOME NO INPUT
   buscar(){
     console.log(this.pokemonNome);
   }
 
+  //ABRE O CONTAINER DE COMPARAÇÃO DE POKEMON 
   CompararPokemons(){
     this.compararPokemons = true;
   }
-
+  //FECHA O CONTAINER DE COMPARAÇÃO DE POKEMON 
   FecharComparar(){
     this.compararPokemons = false;
   }

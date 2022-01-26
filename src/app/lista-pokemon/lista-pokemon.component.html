@@ -1,3 +1,4 @@
+<!--PAGINA QUE RENDERIZA A LISTA E PUXA O DIALOG COM AS INFORMAÇÕES CONTIDAS NO POKEMON.COMPONENT-->
 <div class="bg">
   <div class="teste">
     <h1>Bem-vindo ao melhor site de busca Pokémon!</h1>           
@@ -8,7 +9,7 @@
       />
       <mat-icon (click)="buscar()">search</mat-icon>   
     </div>
-  </div>
+  </div> <!--FECHA TESTE-->
   <div class="pai">
     <div class="listas">
         <div class="geracao1">    
@@ -20,12 +21,13 @@
             </li>
           </ul>
         </div>
-    </div>
+    </div> <!--fecha listas-->
 
     <div class="PaiComparacao"
-    [class.PaiComparacao-on]="compararPokemons"
-    [class.PaiComparacao-off]="!compararPokemons">
-      <h2>COMPARE OS ATRIBUTOS DOS POKEMONS E VEJA QUEM É O MAIS FORTE! <button  class="btn-fecha" (click)="FecharComparar()">X</button></h2>
+      [class.PaiComparacao-on]="compararPokemons"
+      [class.PaiComparacao-off]="!compararPokemons">
+      <h2>COMPARE OS ATRIBUTOS DOS POKEMONS E VEJA QUEM É O MAIS FORTE! <button  class="btn-fecha" (click)="FecharComparar()">FECHAR</button></h2>
+      <h2>AS COMPARAÇÕES SÃO DA SOMA DOS ATRIBUTOS IGNORANDO OS ELEMENTOS</h2>
       
       <div class="comparacao">
         <div class="comparacao1">
@@ -36,13 +38,13 @@
         <div class="comparacao2">
           <input type="text" name="pokemon" id="input2" placeholder="buscar...">
         </div>
-      </div>
+      </div> <!--FECHA COMPARACAO-->
 
-    </div>
-  </div>
+    </div> <!--FECHA PAICOMPARACAO-->
+  </div> <!--FECHA PAI-->
 
   <div class="btn">
     <button (click)="CompararPokemons()">COMPARAR</button>
   </div>
-</div>
+</div> <!-- FECHA BG -->
  
