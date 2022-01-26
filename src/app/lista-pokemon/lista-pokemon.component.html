@@ -1,0 +1,24 @@
+<div class="bg">
+  <div class="teste">
+    <h1>Bem-vindo ao melhor site de busca Pokémon!</h1>           
+    <span style="font-size: 18px">Temos disponíveis todas as gerações Pokémon separadas por listas. Caso deseje procurar algum pokémon em específico usar o input abaixo.</span><br>
+    <div class="icon">
+      <span style="font-size: 20px">Busque aqui:</span><input class="input" placeholder="Digite o Id ou nome do Pokémon..."><mat-icon (click)="buscar()">search</mat-icon>    </div>
+    </div>
+  <div class="listas">
+      <div class="geracao1">    
+        <h5>Primeira Geração (001-151)</h5>      
+        <ul>
+          <li (click)="abrirStats(i)" *ngFor="let pokemon of pokemons; let i = index;">
+            {{pokemon.name}} 
+            <span>Nº{{pokemon.number}}</span>
+          </li>
+        </ul>
+      </div>
+  </div>
+
+
+
+
+</div>
+ 

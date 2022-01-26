@@ -1,0 +1,249 @@
+.pai {
+  display: flex;
+  justify-content: space-between;
+}
+
+.pokemon {
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  margin: 0 0px 50px;
+  display: flex;
+  flex-direction: column;
+  border: solid 2px black;
+  border-radius: 3px;
+  width: 200px;
+  height: 300px;
+  padding: 8px;
+}
+
+.pokemon-img {
+  background: #b9f1e8;
+}
+
+.pokemon-img img {
+  margin-left: 10px;
+  width: 100%;
+  height: 100%;
+}
+
+.pokemon-numero,
+.pokemon-nome {
+  padding: 0 10px;
+  width: 100%;
+  height: 100%;
+}
+
+.pokemon-numero {
+  color: rgb(246, 246, 246);
+  font-size: 13px;
+  padding-top: 3px;
+  font-weight: bold;
+  -webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-color: #000;
+  -webkit-text-fill-color: yellow;
+}
+
+.pokemon-nome {
+  font-size: 145%;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 5px;
+  font-weight: bold;
+  -webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-color: #000;
+  -webkit-text-fill-color: yellow;
+}
+
+.pokemon-tipo {
+  text-align: center;
+}
+
+.pokemon-tipo__dif {
+  border-radius: 3px;
+  font-size: 11px;
+}
+
+.pokemon-status {
+  border-radius: 3px;
+  padding: 5px;
+}
+
+.pokemon-status ul {
+  list-style: none;
+
+  border-radius: 5px;
+}
+
+.pokemon-status li {
+  font-family: Helvetica;
+  padding: 4px;
+  font-size: 18px;
+  margin-top: 5px;
+  margin-left: -30px;
+  color: #f7de3f;
+  font-weight: bold;
+  -webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-color: #000;
+  -webkit-text-fill-color: yellow;
+}
+
+.pokemon-status span {
+  background-color: ghostwhite;
+  padding: 10px;
+  color: #212121;
+  border-radius: 5px;
+  font-size: 15px;
+}
+
+/* O container geral define a perspectiva */
+.flip-container {
+  perspective: 1000;
+}
+
+/* vira os containers frente e verso quando o mouse passa em cima */
+.flipper:hover .front {
+  transform: rotateY(180deg);
+  z-index: 0;
+}
+
+.flipper:hover .back {
+  transform: rotateY(0);
+  z-index: 1;
+}
+.flip-container,
+.front,
+.back {
+  width: 200px;
+  height: 300px;
+}
+
+/* esconde o verso durante a animação */
+.front,
+.back {
+  backface-visibility: hidden;
+  position: absolute;
+  transition: 700ms;
+}
+
+/* frente posicionada sobre o verso */
+.front {
+  z-index: 1;
+  background-image: url(https://media.istockphoto.com/photos/high-res-macro-photo-of-abstract-pastel-iridescent-holographic-foil-picture-id1197279546?s=612x612);
+  background-position: center;
+}
+
+/* verso inicialmente escondido */
+.back {
+  transform: rotateY(180deg);
+  background-image: url(https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/4f7705ec-8c49-4eed-a56e-c21f3985254c/dah43cy-a8e121cb-934a-40f6-97c7-fa2d77130dd5.png/v1/fill/w_1024,h_1420,strp/pokemon_card_backside_in_high_resolution_by_atomicmonkeytcg_dah43cy-fullview.png?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7ImhlaWdodCI6Ijw9MTQyMCIsInBhdGgiOiJcL2ZcLzRmNzcwNWVjLThjNDktNGVlZC1hNTZlLWMyMWYzOTg1MjU0Y1wvZGFoNDNjeS1hOGUxMjFjYi05MzRhLTQwZjYtOTdjNy1mYTJkNzcxMzBkZDUucG5nIiwid2lkdGgiOiI8PTEwMjQifV1dLCJhdWQiOlsidXJuOnNlcnZpY2U6aW1hZ2Uub3BlcmF0aW9ucyJdfQ.9GzaYS7sd8RPY5FlHca09J9ZQZ9D9zI69Ru-BsbkLDA);
+  background-position: center;
+  background-size: cover;
+}
+
+.pokemon-tipo__dif--bug {
+  background: linear-gradient(180deg, #729f3f 50%, #729f3f 50%);
+  background-color: #729f3f;
+  color: #fff;
+  padding: 3px;
+}
+.pokemon-tipo__dif--dark {
+  background: linear-gradient(180deg, #707070 50%, #707070 50%);
+  background-color: #707070;
+  color: #fff;
+  padding: 3px;
+}
+.pokemon-tipo__dif--dragon {
+  background: linear-gradient(180deg, #8b43bb 50%, #8b43bb 50%);
+  background-color: #53a4cf;
+  color: #fff;
+  padding: 3px;
+}
+.pokemon-tipo__dif--electric {
+  background: linear-gradient(180deg, #eed535 50%, #eed535 50%);
+  background-color: #eed535;
+  color: #212121;
+  padding: 3px;
+}
+.pokemon-tipo__dif--fairy {
+  background: linear-gradient(180deg, #fdb9e9 50%, #fdb9e9 50%);
+  background-color: #fdb9e9;
+  color: #212121;
+  padding: 3px;
+}
+.pokemon-tipo__dif--fighting {
+  background: linear-gradient(180deg, #d56723 50%, #d56723 50%);
+  background-color: #d56723;
+  color: #fff;
+  padding: 3px;
+}
+.pokemon-tipo__dif--fire {
+  background: linear-gradient(180deg, #fd7d24 50%, #fd7d24 50%);
+  background-color: #fd7d24;
+  color: #fff;
+  padding: 3px;
+}
+.pokemon-tipo__dif--flying {
+  background: linear-gradient(180deg, #3dc7ef 50%, #3dc7ef 50%);
+  background-color: #3dc7ef;
+  color: #212121;
+  padding: 3px;
+}
+.pokemon-tipo__dif--ghost {
+  background: linear-gradient(180deg, #7b62a3 50%, #7b62a3 50%);
+  background-color: #7b62a3;
+  color: #fff;
+  padding: 3px;
+}
+.pokemon-tipo__dif--grass {
+  background: linear-gradient(180deg, #9bcc50 50%, #9bcc50 50%);
+  background-color: #9bcc50;
+  color: #212121;
+  padding: 3px;
+}
+.pokemon-tipo__dif--ground {
+  background: linear-gradient(180deg, #f7de3f 50%, #f7de3f 50%);
+  background-color: #f7de3f;
+  color: #212121;
+  padding: 3px;
+}
+.pokemon-tipo__dif--ice {
+  background: linear-gradient(180deg, #51c4e7 50%, #51c4e7 50%);
+  background-color: #51c4e7;
+  color: #212121;
+  padding: 3px;
+}
+.pokemon-tipo__dif--normal {
+  background: linear-gradient(180deg, #a4acaf 50%, #a4acaf 50%);
+  background-color: #a4acaf;
+  color: #212121;
+  padding: 3px;
+}
+.pokemon-tipo__dif--poison {
+  background: linear-gradient(180deg, #b97fc9 50%, #b97fc9 50%);
+  background-color: #b97fc9;
+  color: #fff;
+  padding: 3px;
+}
+.pokemon-tipo__dif--psychic {
+  background: linear-gradient(180deg, #f366b9 50%, #f366b9 50%);
+  background-color: #f366b9;
+  color: #fff;
+  padding: 3px;
+}
+.pokemon-tipo__dif--rock {
+  background: linear-gradient(180deg, #a38c21 50%, #a38c21 50%);
+  background-color: #a38c21;
+  color: #fff;
+  padding: 3px;
+}
+.pokemon-tipo__dif--steel {
+  background: linear-gradient(180deg, #9eb7b8 50%, #9eb7b8 50%);
+  background-color: #9eb7b8;
+  color: #212121;
+  padding: 3px;
+}
+.pokemon-tipo__dif--water {
+  background: linear-gradient(180deg, #4592c4 50%, #4592c4 50%);
+  background-color: #4592c4;
+  color: #fff;
+  padding: 3px;
+}

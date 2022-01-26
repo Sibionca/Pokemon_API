@@ -1,0 +1,14 @@
+<div class="pai">
+<h2 mat-dialog-title>Informações detalhadas</h2>
+<mat-dialog-content class="mat-typography">
+
+  <!--AQUI ELE RECEBE O POKEMONID VINDO DO LISTAPOKEMONS > PROCURA NO ARRAY DE LISTA DE POKEMONS NO INDICE RECEBIDO 
+    e GUARDA AS INFO NO "POKEMON"-->
+  <app-pokemons *ngIf="pokemons != undefined" [pokemon]="pokemons[(pokemonId)]"></app-pokemons>
+
+  
+  </mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button (click)="fecha()" mat-button mat-dialog-close>Fechar</button>
+</mat-dialog-actions>
+</div>

@@ -1,0 +1,41 @@
+<!--PREENCHER ESSE HTML COM TODOS OS DADOS Q VC GOSTARIA DE MOSTRAR COM DETALHES NA TELA, USANDO POKEMONAPI COMO MODELO BASE-->
+<div *ngIf="pokemonAPI != undefined" class="pai flip-container">
+  <div class="flipper">
+    <div class="pokemon front">
+      <div class="pokemon-img">
+        <img [src]="pokemonAPI.sprites.front_default" alt="">
+      </div>
+
+      <div class="pokemon-numero">
+        Nº {{ pokemonAPI.id }}
+      </div>
+
+      <div class="pokemon-nome">
+        {{pokemonAPI.name}}
+      </div>
+
+      <div class="pokemon-tipo">
+        <div class="pokemon-tipo__dif" *ngFor="let tipo of pokemonAPI.types"
+        [class]="'pokemon-tipo__dif--' + tipo.type.name.toLowerCase()">{{tipo.type.name}}</div>
+      </div>
+
+    </div>
+
+    <div class="pokemon-status back">
+      <ul>
+        <li *ngFor="let pokemon of pokemonAPI.stats; let i = index;">
+          {{pokemonAPI.stats[i].stat.name}}: {{pokemonAPI.stats[i].base_stat}}
+          <div class="progress">
+            <div id="pb_{{i}}" class="progress-bar" role="progressbar" aria-valuenow="25" aria-valuemin="0" aria-valuemax="200"></div> 
+          </div>
+          
+        </li>
+        
+      </ul>
+      <span>Força total: {{pokemonTotal}}</span>
+    </div>
+  </div>   
+</div>
+
+
+
