@@ -99,3 +99,51 @@ h5 {
 mat-icon:hover {
   cursor: pointer;
 }
+
+.btn {
+  margin-top: 50px;
+  margin-left: 20px;
+}
+
+.btn button {
+  padding: 10px;
+}
+
+.btn-fecha {
+  padding: 5px;
+  margin-left: 105px;
+}
+
+.PaiComparacao {
+  width: 60%;
+  height: 450px;
+  background-image: url(https://cache.desktopnexus.com/cropped-wallpapers/1564/1564363-1920x1080-[DesktopNexus.com].jpg?st=KskdQhmtHwN0mHC3ILW4sQ&e=1643234590);
+  background-size: cover;
+  background-position: center;
+  margin-left: 50px;
+  margin-top: 50px;
+  padding: 30px;
+}
+
+.PaiComparacao-on {
+  display: block;
+}
+
+.PaiComparacao-off {
+  display: none;
+}
+
+.comparacao {
+  display: flex;
+  justify-content: space-between;
+  margin: 50px 50px;
+}
+
+.PaiComparacao h2 {
+  text-align: center;
+  color: white;
+}
+
+.pai {
+  display: flex;
+}

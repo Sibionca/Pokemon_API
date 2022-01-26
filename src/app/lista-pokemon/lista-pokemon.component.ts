@@ -12,6 +12,8 @@ import { DialogComponent } from './dialog/dialog.component';
 export class ListaPokemonComponent {
   public pokemons: Pokemon[]; 
   public pokemonsid: number;
+  public pokemonNome: string;
+  public compararPokemons: boolean = false;
   
 
   constructor( 
@@ -51,7 +53,15 @@ export class ListaPokemonComponent {
   }
 
   buscar(){
+    console.log(this.pokemonNome);
+  }
 
+  CompararPokemons(){
+    this.compararPokemons = true;
+  }
+
+  FecharComparar(){
+    this.compararPokemons = false;
   }
 }
 

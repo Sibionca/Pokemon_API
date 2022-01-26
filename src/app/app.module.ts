@@ -13,7 +13,7 @@ import { HeaderComponent } from './header/header.component';
 import { ListaPokemonComponent } from './lista-pokemon/lista-pokemon.component';
 import { PokemonsComponent } from './pokemons/pokemons.component';
 import { DialogComponent } from './lista-pokemon/dialog/dialog.component';
-
+import { FormsModule} from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -31,7 +31,8 @@ import { DialogComponent } from './lista-pokemon/dialog/dialog.component';
     MatListModule,
     MatDialogModule,
     BrowserAnimationsModule,
-    MatIconModule
+    MatIconModule,
+    FormsModule
   ],
   providers: [
     PokemonService,
