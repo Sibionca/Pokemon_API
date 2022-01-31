@@ -4,6 +4,9 @@ import { Component, OnInit } from '@angular/core';
 import { Pokemon } from '../Models/Pokemon';
 import {MatDialog} from '@angular/material/dialog';
 import { DialogComponent } from './dialog/dialog.component';
+import {FormControl} from '@angular/forms';
+import {Observable} from 'rxjs';
+import {map, startWith} from 'rxjs/operators';
 
 @Component({
   selector: 'app-lista-pokemon',
@@ -17,6 +20,10 @@ export class ListaPokemonComponent {
   public compararPokemons: boolean = false;
   public pokemonComparar1: any;
   public pokemonComparar2: any;
+
+  // myControl = new FormControl();                      AUTO COMPLETE
+  // options: string[] = ['One', 'Two', 'Three'];        A    C
+  // filteredOptions: Observable<string[]>;              A    C
   
 
   constructor( 
@@ -29,6 +36,12 @@ export class ListaPokemonComponent {
     this.pokemonService.getPokemons().subscribe(
       data => {
         this.pokemons = data.results;
+        // this.filteredOptions = this.myControl.valueChanges.pipe(                    //AUTOCOMPLETE
+        //   startWith(''),
+        //   map(value => this._filter(value)),
+        // );                                                                          // AUTOCOMPLETE
+
+
         //GUARDA OS RESULTADOS NUM ARRAY POKEMON[]
         //O FOR ABAIXO PERCORRE O ARRAY ITEM A ITEM PARA MUDAR O NOME COLOCANDO LETRA MAIUSCULA NO NOME DO POKEMON 
         //E ADICIONA "00" ou "0" DE ACORDO COM O NUMERO DELE
@@ -48,6 +61,14 @@ export class ListaPokemonComponent {
       }      
     )
   }
+  
+
+  //                                                          TENTATIVA DO AUTOCOMPLETE
+  // public _filter(value: string): string[] {   
+  //   const filterValue = value.toLowerCase();
+    
+  //   return this.options.filter(option => option.toLowerCase().includes(filterValue));
+  // }                                                        AUTOCOMPLETE
 
 
   //PUXA O ID DO POKEMON NA LISTA E ABRE O DIALOG COM O POKEMON ESPECIFICO
@@ -68,11 +89,11 @@ export class ListaPokemonComponent {
     //     this.abrirStats(pokemonInput, Pokemon.name);
     //   }
     // }
-      let index = this.pokemons.map(function(e) { return e.name.toUpperCase; }).indexOf(pokemonInput);
-      this.pokemonService.pokemonSelecionado = index;
-      const dialogRef = this.dialog.open(DialogComponent, { panelClass: 'custom-dialog-container' });
-      console.log(index);
-     // this.abrirStats(pokemonInput -1, Pokemon.name); // O "-1" FAZ REFERENCIA AO INDICE 0 QUE CONTAVA COMO 1
+      // let index = this.pokemons.map(function(e) { return e.name.toUpperCase; }).indexOf(pokemonInput);
+      // this.pokemonService.pokemonSelecionado = index;
+      // const dialogRef = this.dialog.open(DialogComponent, { panelClass: 'custom-dialog-container' });
+      // console.log(index);
+      this.abrirStats(pokemonInput -1, Pokemon.name); // O "-1" FAZ REFERENCIA AO INDICE 0 QUE CONTAVA COMO 1
     
     
     

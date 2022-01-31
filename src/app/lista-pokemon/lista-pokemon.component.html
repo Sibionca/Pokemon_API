@@ -4,10 +4,11 @@
     <h1>Bem-vindo ao melhor site de busca Pokémon!</h1>           
     <span style="font-size: 18px">Temos disponíveis todas as gerações Pokémon separadas por listas. Caso deseje procurar algum pokémon em específico usar o input abaixo.</span><br>
     <div class="icon">
-      <span style="font-size: 20px">Busque aqui:</span><input 
-      class="input" placeholder="Digite o Id ou nome do Pokémon..."  
-      name="pokemonInput" [(ngModel)]="pokemonInput"
-      (keyup)="onKey($event)"/>
+      <span style="font-size: 20px">Busque aqui:</span>
+      <input class="input" placeholder="Digite o Id ou nome do Pokémon..."  
+        name="pokemonInput" 
+        [(ngModel)]="pokemonInput"
+        (keyup)="onKey($event)"/>
       <mat-icon (click)="buscar(pokemonInput)">search</mat-icon>   
     </div>
   </div> <!--FECHA TESTE-->
@@ -38,7 +39,7 @@
           <input type="text" name="pokemon" id="input1" placeholder="buscar..."
           [(ngModel)]="pokemonComparar1"
           (keyup)="onKeyComparar($event)">
-          <div class="inserir-pokemon"></div>
+          <div class="inserir-pokemon" *ngFor="let pokemon of pokemons">{{pokemon.name}}</div>
           
         </div>
 
@@ -50,7 +51,7 @@
           <input type="text" name="pokemon" id="input2" placeholder="buscar..."
           [(ngModel)]="pokemonComparar2"
           (keyup)="onKeyComparar($event)">
-          <div class="inserir-pokemon"></div>
+          <div class="inserir-pokemon" *ngFor="let pokemon of pokemons">{{pokemon.name}}</div>
         </div>
       </div> <!--FECHA COMPARACAO-->
 

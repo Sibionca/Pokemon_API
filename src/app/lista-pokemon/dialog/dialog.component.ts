@@ -28,6 +28,7 @@ export class DialogComponent implements OnInit {
         this.pokemons = data.results;        
       }      
     )
+    
   }
 
   fecha(){
