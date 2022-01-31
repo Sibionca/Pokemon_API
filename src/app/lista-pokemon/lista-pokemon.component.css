@@ -109,8 +109,20 @@ mat-icon:hover {
   padding: 10px;
 }
 
+button {
+  border-radius: 5px;
+  background-color: rgb(184, 135, 209);
+  color: white;
+}
+
+button:hover {
+  background-color: darkorchid;
+}
+
 .btn-fecha {
-  padding: 5px;
+  display: flex;
+  justify-content: end;
+  padding: 3px;
   margin-left: 105px;
 }
 
@@ -147,4 +159,17 @@ mat-icon:hover {
 
 .pai {
   display: flex;
+}
+
+.inserir-pokemon {
+  background-color: darkgreen;
+  width: 175px;
+  height: 175px;
+  margin-top: 10px;
+}
+
+.vs img {
+  width: 45%;
+  height: 45%;
+  margin-left: 140px;
 }

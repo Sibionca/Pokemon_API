@@ -1,3 +1,4 @@
+import { PokemonAPI } from './../Models/PokemonAPI';
 import { PokemonService } from './../services/pokemon.service';
 import { Component, OnInit } from '@angular/core';
 import { Pokemon } from '../Models/Pokemon';
@@ -12,8 +13,10 @@ import { DialogComponent } from './dialog/dialog.component';
 export class ListaPokemonComponent {
   public pokemons: Pokemon[]; 
   public pokemonsid: number;
-  public pokemonNome: string;
+  public pokemonInput: any;
   public compararPokemons: boolean = false;
+  public pokemonComparar1: any;
+  public pokemonComparar2: any;
   
 
   constructor( 
@@ -29,7 +32,7 @@ export class ListaPokemonComponent {
         //GUARDA OS RESULTADOS NUM ARRAY POKEMON[]
         //O FOR ABAIXO PERCORRE O ARRAY ITEM A ITEM PARA MUDAR O NOME COLOCANDO LETRA MAIUSCULA NO NOME DO POKEMON 
         //E ADICIONA "00" ou "0" DE ACORDO COM O NUMERO DELE
-        for ( let i = 0; i <= 151; i++){
+        for ( let i = 0; i <= 1118; i++){
           if(this.pokemons[i] != undefined && this.pokemons[i].name != undefined){
             this.pokemons[i].name = this.pokemons[i].name[0].toUpperCase() + this.pokemons[i].name.slice(1);
             if(i<=8){
@@ -48,15 +51,52 @@ export class ListaPokemonComponent {
 
 
   //PUXA O ID DO POKEMON NA LISTA E ABRE O DIALOG COM O POKEMON ESPECIFICO
-  abrirStats(id:number){
+  abrirStats(id:number, Pokemon: any){
     this.pokemonService.pokemonSelecionado = id;
-    const dialogRef = this.dialog.open(DialogComponent);
+    const dialogRef = this.dialog.open(DialogComponent, { panelClass: 'custom-dialog-container' });
     //dialogRef.componentInstance.pokemonId = id;
   }
 
-  //PUXA O POKEMON ATRAVÉS DO NOME NO INPUT
-  buscar(){
-    console.log(this.pokemonNome);
+  //PUXA O POKEMON ATRAVÉS DO NOME NO INPUT E EXECUTA A FUNÇÃO DE ABRIR O DIALOG
+  buscar(pokemonInput: any){
+    // for ( let i = 0; i <= this.pokemons.length; i++){
+    //   if(pokemonInput != this.pokemons[i].name && pokemonInput != this.pokemons[i].number ){
+    //       alert('pokemon invalido');
+    //     console.log(pokemonInput );
+    //     console.log(this.pokemons[i].name )
+    //   }else{
+    //     this.abrirStats(pokemonInput, Pokemon.name);
+    //   }
+    // }
+      let index = this.pokemons.map(function(e) { return e.name.toUpperCase; }).indexOf(pokemonInput);
+      this.pokemonService.pokemonSelecionado = index;
+      const dialogRef = this.dialog.open(DialogComponent, { panelClass: 'custom-dialog-container' });
+      console.log(index);
+     // this.abrirStats(pokemonInput -1, Pokemon.name); // O "-1" FAZ REFERENCIA AO INDICE 0 QUE CONTAVA COMO 1
+    
+    
+    
+    //console.log(this.pokemonInput);
+      
+  }
+  
+  //FAZ A BUSCA NO INPUT FUNCIONAR AO PRESSIONAR ENTER
+  onKey(event: KeyboardEvent){
+    let key = event.which || event.keyCode;
+    if (key == 13) {
+      this.buscar(this.pokemonInput); // 
+    }
+  } 
+
+  onKeyComparar(event: KeyboardEvent){
+    let key = event.which || event.keyCode;
+    if (key == 13) {
+       this.inserirPokemon(this.pokemonComparar1, this.pokemonComparar2);
+    }
+  }
+
+  inserirPokemon(pokemonComparar1: any, pokemonComparar2:any){
+    
   }
 
   //ABRE O CONTAINER DE COMPARAÇÃO DE POKEMON 

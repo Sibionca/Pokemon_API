@@ -14,6 +14,8 @@ import { ListaPokemonComponent } from './lista-pokemon/lista-pokemon.component';
 import { PokemonsComponent } from './pokemons/pokemons.component';
 import { DialogComponent } from './lista-pokemon/dialog/dialog.component';
 import { FormsModule} from '@angular/forms';
+import {MAT_FORM_FIELD_DEFAULT_OPTIONS} from '@angular/material/form-field';
+
 
 @NgModule({
   declarations: [
@@ -37,6 +39,7 @@ import { FormsModule} from '@angular/forms';
   providers: [
     PokemonService,
     HttpClientModule,
+    {provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: {appearance: 'fill'}}
   ],
   bootstrap: [AppComponent]
 })

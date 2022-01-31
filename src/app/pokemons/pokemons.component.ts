@@ -27,16 +27,25 @@ export class PokemonsComponent{
     this.pokemonService.getPokemon(this.pokemon.url).subscribe(
       data => {        
         this.pokemonAPI = data;
-        console.log(this.pokemonAPI);
+          
+        //FAZ A PRIMEIRA LETRA DOS STATUS FICAR EM MAISCULO
+        for ( let i = 0; i <=  5; i++){
+          this.pokemonAPI.stats[i].stat.name = this.pokemonAPI.stats[i].stat.name[0].toUpperCase() + this.pokemonAPI.stats[i].stat.name.slice(1);
+        }
+        //FAZ A PRIMEIRA LETRA DOS TIPOS FICAR EM MAÍSCULO
+        for(let i = 0; i < this.pokemonAPI.types.length; i++){
+          this.pokemonAPI.types[i].type.name = this.pokemonAPI.types[i].type.name[0].toUpperCase() + this.pokemonAPI.types[i].type.name.slice(1);
+        }
+        //FAZ A PRIMEIRA LETRA DOS NOMES FICAR EM MAÍSCULO
+        this.pokemonAPI.name = this.pokemonAPI.name[0].toUpperCase() + this.pokemonAPI.name.slice(1);
+        
         //PREENCHE OS NUMEROS DE ID DO POKEMON ADICIONANDO "00" ou "0"
-        /*for ( let i = 0; i <= 151; i++){
-          this.pokemonAPI.stats[i].stat.name = this.pokemonAPI.stats[i].stat.name.toUpperCase() + this.pokemonAPI[i].stat.nameslice(1);
-        }*/
         if(this.pokemonAPI.id<=8){
           this.pokemonAPI.id = "00" + this.pokemonAPI.id;
         } else if(this.pokemonAPI.id<=98){
           this.pokemonAPI.id = "0" + this.pokemonAPI.id;
         } 
+        //SOMA TODOS OS STATUS DO POKEMON E GUARDA NA VARIAVEL
         for (let i = 0; i < this.pokemonAPI.stats.length; i++) {
           this.pokemonTotal += Number(this.pokemonAPI.stats[i].base_stat);
 

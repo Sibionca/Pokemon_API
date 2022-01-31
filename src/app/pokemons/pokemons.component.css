@@ -138,8 +138,8 @@
 }
 
 .detalhes {
-  margin-left: 300px;
-  width: 40%;
+  margin-left: 250px;
+  width: 700px;
 }
 
 .pokemon-tipo__dif--bug {
@@ -209,7 +209,7 @@
   padding: 3px;
 }
 .pokemon-tipo__dif--ice {
-  background: linear-gradient(180deg, #51c4e7 50%, #51c4e7 50%);
+  background: linear-gradient(180deg, #9cd5e7 50%, #9cd5e7 50%);
   background-color: #51c4e7;
   color: #212121;
   padding: 3px;

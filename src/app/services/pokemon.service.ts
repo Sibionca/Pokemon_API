@@ -6,7 +6,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class PokemonService {
   public pokemonSelecionado: any;
-  public URL_pokemons = 'https://pokeapi.co/api/v2/pokemon/?limit=151'; 
+  public URL_pokemons = 'https://pokeapi.co/api/v2/pokemon/?limit=1118'; 
   constructor(private httpClient: HttpClient) {};
 
     getPokemons(){

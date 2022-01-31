@@ -6,16 +6,19 @@
     <div class="icon">
       <span style="font-size: 20px">Busque aqui:</span><input 
       class="input" placeholder="Digite o Id ou nome do Pokémon..."  
-      />
-      <mat-icon (click)="buscar()">search</mat-icon>   
+      name="pokemonInput" [(ngModel)]="pokemonInput"
+      (keyup)="onKey($event)"/>
+      <mat-icon (click)="buscar(pokemonInput)">search</mat-icon>   
     </div>
   </div> <!--FECHA TESTE-->
   <div class="pai">
     <div class="listas">
-        <div class="geracao1">    
-          <h5>Primeira Geração (001-151)</h5>      
+        <div class="geracao1">   
+          
+          <h5>Primeira Geração (001-151)</h5>    
+        
           <ul>
-            <li (click)="abrirStats(i)" *ngFor="let pokemon of pokemons; let i = index;">
+            <li (click)="abrirStats(i, pokemon.name)" *ngFor="let pokemon of pokemons; let i = index;">
               {{pokemon.name}} 
               <span>Nº{{pokemon.number}}</span>
             </li>
@@ -26,17 +29,28 @@
     <div class="PaiComparacao"
       [class.PaiComparacao-on]="compararPokemons"
       [class.PaiComparacao-off]="!compararPokemons">
-      <h2>COMPARE OS ATRIBUTOS DOS POKEMONS E VEJA QUEM É O MAIS FORTE! <button  class="btn-fecha" (click)="FecharComparar()">FECHAR</button></h2>
+      <div class="btn-fecha"><button  class="btn-fecha" (click)="FecharComparar()">FECHAR</button></div>
+      <h2>COMPARE OS ATRIBUTOS DOS POKEMONS E VEJA QUEM É O MAIS FORTE!</h2>
       <h2>AS COMPARAÇÕES SÃO DA SOMA DOS ATRIBUTOS IGNORANDO OS ELEMENTOS</h2>
       
       <div class="comparacao">
         <div class="comparacao1">
-          <input type="text" name="pokemon" id="input1" placeholder="buscar...">
+          <input type="text" name="pokemon" id="input1" placeholder="buscar..."
+          [(ngModel)]="pokemonComparar1"
+          (keyup)="onKeyComparar($event)">
+          <div class="inserir-pokemon"></div>
           
         </div>
 
+        <div class="vs">
+          <img src="../../assets/VS.png">
+        </div>
+
         <div class="comparacao2">
-          <input type="text" name="pokemon" id="input2" placeholder="buscar...">
+          <input type="text" name="pokemon" id="input2" placeholder="buscar..."
+          [(ngModel)]="pokemonComparar2"
+          (keyup)="onKeyComparar($event)">
+          <div class="inserir-pokemon"></div>
         </div>
       </div> <!--FECHA COMPARACAO-->
 
@@ -46,5 +60,6 @@
   <div class="btn">
     <button (click)="CompararPokemons()">COMPARAR</button>
   </div>
+  
 </div> <!-- FECHA BG -->
  
