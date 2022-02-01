@@ -160,19 +160,39 @@ button:hover {
   display: flex;
 }
 
-.inserir-pokemon {
-  background-color: darkgreen;
-  width: 175px;
-  height: 175px;
-  margin-top: 10px;
-}
-
 .vs img {
   display: flex;
   align-items: center;
-  height: auto; 
-  width: auto; 
-  max-width: 200px; 
+  height: auto;
+  width: auto;
+  max-width: 200px;
   max-height: 200px;
   margin-top: 5%;
+}
+
+.inserir-pokemon {
+  background-color: darkgreen;
+  width: 175px;
+  margin-top: 10px;
+  /*background-image: url(https://media.istockphoto.com/photos/high-res-macro-photo-of-abstract-pastel-iridescent-holographic-foil-picture-id1197279546?s=612x612);*/
+  border-radius: 3%;
+  background-position: center;
+  color: #f7de3f;
+  -webkit-text-stroke-width: 0.5px;
+  -webkit-text-stroke-color: #000;
+  -webkit-text-fill-color: yellow;
+}
+
+.inserir-pokemon span,
+p {
+  text-align: center;
+}
+
+.inserir-pokemon img {
+  background-color: #b9f1e8;
+  width: 90%;
+  height: 90%;
+  margin-top: 5%;
+  margin-left: 5%;
+  border-radius: 3%;
 }

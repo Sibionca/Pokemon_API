@@ -16,7 +16,7 @@
     <div class="listas">
         <div class="geracao1">   
           
-          <h5>Primeira Geração (001-151)</h5>    
+          <h5>Todas as Gerações ( I à VIII )</h5>    
         
           <ul>
             <li (click)="abrirStats(i)" *ngFor="let pokemon of pokemons; let i = index;">
@@ -35,23 +35,36 @@
       <h2>AS COMPARAÇÕES SÃO DA SOMA DOS ATRIBUTOS IGNORANDO OS ELEMENTOS</h2>
       
       <div class="comparacao">
-        <div class="comparacao1">
+        <div class="comparacao1" >
           <input type="text" name="pokemon" id="input1" placeholder="Busque seu Pokémon"
           [(ngModel)]="pokemonComparar1"
           (keyup)="onKeyComparar1($event)">
-          <div class="inserir-pokemon">TT</div>
+          <div class="inserir-pokemon" *ngIf="pokemonComparar1 != undefined">
+            <img [src]="pokemonComparar1.sprites.front_default"  alt="fotinha">
+            <div class="span1">
+              <span>{{pokemonComparar1.name}}: </span>
+            </div>
+            <p>Força Total:{{pokemonTotal1}}</p>
+          </div>
           
-        </div>
+        </div> <!--fecha comparacao1-->
 
         <div class="vs">
           <img src="../../assets/VS.png">
+          <button>Fight</button>
         </div>
 
         <div class="comparacao2">
           <input type="text" name="pokemon" id="input2" placeholder="Busque seu Pokémon"
           [(ngModel)]="pokemonComparar2"
           (keyup)="onKeyComparar2($event)">
-          <div class="inserir-pokemon">FF</div>
+          <div class="inserir-pokemon" *ngIf="pokemonComparar2 != undefined">
+            <img [src]="pokemonComparar2.sprites.front_default" class="img2"  alt="fotinha">
+            <div class="span2"> 
+              <span>{{pokemonComparar2.name}}: </span>
+            </div>
+            <p>Força Total:{{pokemonTotal2}}</p>
+          </div>
         </div>
       </div> <!--FECHA COMPARACAO-->
 

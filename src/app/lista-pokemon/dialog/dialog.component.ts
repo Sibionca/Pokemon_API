@@ -29,7 +29,7 @@ export class DialogComponent implements OnInit {
     this.pokemonService.getPokemons().subscribe(
       data => {
         this.pokemons = data.results;  
-        console.log(data.results)      
+             
       }      
     )
     //PEGAR STATS DO POKEMON SEPARADAMENTE
