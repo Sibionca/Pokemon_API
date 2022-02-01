@@ -22,6 +22,8 @@ export class ListaPokemonComponent {
   public pokemonComparar2: any;
   public pokemonTotal1: number = 0;
   public pokemonTotal2: number = 0;
+  public resultado: string;
+  public showResultado: boolean = false;
 
   // myControl = new FormControl();                      AUTO COMPLETE
   // options: string[] = ['One', 'Two', 'Three'];        A    C
@@ -102,12 +104,13 @@ export class ListaPokemonComponent {
   } 
 
    //ABRE O CONTAINER DE COMPARAÇÃO DE POKEMON 
-   CompararPokemons(){
+  CompararPokemons(){
     this.compararPokemons = true;
   }
   //FECHA O CONTAINER DE COMPARAÇÃO DE POKEMON 
   FecharComparar(){
     this.compararPokemons = false;
+    this.showResultado = false;
   }
 
 
@@ -159,6 +162,7 @@ export class ListaPokemonComponent {
   }
 
   somaStats1(poke1: any){
+    this.pokemonTotal1 = 0; // RESETA OS STATUS PARA NAO SOMAR EM UMA NOVA BUSCA
     this.pokemonService.getPokemonById(poke1).subscribe( 
       data => {poke1 = data}
     )
@@ -170,6 +174,7 @@ export class ListaPokemonComponent {
   }
 
   somaStats2(poke2: any){
+    this.pokemonTotal2 = 0;
     this.pokemonService.getPokemonById(poke2).subscribe( 
       data => {poke2 = data}
     )
@@ -180,5 +185,21 @@ export class ListaPokemonComponent {
     console.log(this.pokemonTotal2);
   }
 
- 
+  Fight(){
+    this.showResultado = false;
+    if(this.pokemonTotal1 == 0 || this.pokemonTotal2 == 0){
+      this.showResultado = true;
+      this.resultado = 'Preencha todos os campos'
+    }else if(this.pokemonTotal1 > this.pokemonTotal2){
+      this.showResultado = true;
+      this.resultado = 'O Primeiro pokemon ganhou'
+    }else if (this.pokemonTotal1 == this.pokemonTotal2){
+      this.showResultado = true;
+      this.resultado = 'Empatou'
+    }else{
+      this.showResultado = true;
+      this.resultado = 'O segundo pokemon ganhou'
+    }
+  }
+
 }

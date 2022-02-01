@@ -51,7 +51,7 @@
 
         <div class="vs">
           <img src="../../assets/VS.png">
-          <button>Fight</button>
+          <button class="fight" (click)="Fight()">Fight</button>
         </div>
 
         <div class="comparacao2">
@@ -70,9 +70,17 @@
 
     </div> <!--FECHA PAICOMPARACAO-->
   </div> <!--FECHA PAI-->
+  <div class="bottom">
+    <div class="btn">
+      <button (click)="CompararPokemons()">COMPARAR</button>
+    </div>
 
-  <div class="btn">
-    <button (click)="CompararPokemons()">COMPARAR</button>
+    <div class="resultado"
+     [class.resultado-on]="showResultado"
+     [class.resultado-off]="!showResultado">
+      {{resultado}}
+    </div>
+
   </div>
   
 </div> <!-- FECHA BG -->
