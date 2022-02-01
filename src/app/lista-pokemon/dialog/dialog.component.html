@@ -5,8 +5,32 @@
     <!--AQUI ELE RECEBE O POKEMONID VINDO DO LISTAPOKEMONS > PROCURA NO ARRAY DE LISTA DE POKEMONS NO INDICE RECEBIDO 
       e GUARDA AS INFO NO "POKEMON"-->
     <app-pokemons *ngIf="pokemons != undefined" [pokemon]="pokemons[(pokemonId)]"></app-pokemons>
-    <div class="detalhes">
-      ABABUBABLÉ
+    <div *ngIf="pokemonStats != undefined" class="detalhes">
+      HP:<br>
+      <input type="text" readonly value={{pokemonStats[0].base_stat}}><br>
+      ATTACK:<br>
+      <input type="text" readonly value={{pokemonStats[1].base_stat}}><br>
+      DEFENSE:<br>
+      <input type="text" readonly value={{pokemonStats[2].base_stat}}><br>
+      SPECIAL ATTACK:<br>
+      <input type="text" readonly value={{pokemonStats[3].base_stat}}><br>
+      SPECIAL DEFENSE:<br>
+      <input type="text" readonly value={{pokemonStats[4].base_stat}}><br>
+      SPEED:<br>
+      <input type="text" readonly value={{pokemonStats[5].base_stat}}><br>
+    </div>
+    <div *ngIf="pokemonStats != undefined" class="detalhes">
+      ALTURA<br>
+      <input type="text" readonly value='{{pokemonAPI.height}} m'><br>
+      PESO:<br>
+      <input type="text" readonly value='{{pokemonAPI.weight}} kg'><br>
+      <div class="ajuste">
+        FORÇA TOTAL:
+        <input type="text" value={{pokemonTotal}}>  
+      </div>          
+    </div>
+    <div class="texto">
+      Caso queira, há uma animação na carta em contexto, basta posicionar o mouse acima dela :)
     </div>
 
     

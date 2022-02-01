@@ -62,12 +62,11 @@
 
 .pokemon-status {
   border-radius: 3px;
-  padding: 5px;
+  padding: 5px;  
 }
 
 .pokemon-status ul {
   list-style: none;
-
   border-radius: 5px;
 }
 
@@ -90,6 +89,7 @@
   color: #212121;
   border-radius: 5px;
   font-size: 15px;
+  margin-left: 20%;
 }
 
 /* O container geral define a perspectiva */

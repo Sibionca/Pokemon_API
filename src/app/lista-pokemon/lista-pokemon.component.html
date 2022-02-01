@@ -19,7 +19,7 @@
           <h5>Primeira Geração (001-151)</h5>    
         
           <ul>
-            <li (click)="abrirStats(i, pokemon.name)" *ngFor="let pokemon of pokemons; let i = index;">
+            <li (click)="abrirStats(i)" *ngFor="let pokemon of pokemons; let i = index;">
               {{pokemon.name}} 
               <span>Nº{{pokemon.number}}</span>
             </li>
@@ -36,10 +36,10 @@
       
       <div class="comparacao">
         <div class="comparacao1">
-          <input type="text" name="pokemon" id="input1" placeholder="buscar..."
+          <input type="text" name="pokemon" id="input1" placeholder="Busque seu Pokémon"
           [(ngModel)]="pokemonComparar1"
-          (keyup)="onKeyComparar($event)">
-          <div class="inserir-pokemon" *ngFor="let pokemon of pokemons">{{pokemon.name}}</div>
+          (keyup)="onKeyComparar1($event)">
+          <div class="inserir-pokemon">TT</div>
           
         </div>
 
@@ -48,10 +48,10 @@
         </div>
 
         <div class="comparacao2">
-          <input type="text" name="pokemon" id="input2" placeholder="buscar..."
+          <input type="text" name="pokemon" id="input2" placeholder="Busque seu Pokémon"
           [(ngModel)]="pokemonComparar2"
-          (keyup)="onKeyComparar($event)">
-          <div class="inserir-pokemon" *ngFor="let pokemon of pokemons">{{pokemon.name}}</div>
+          (keyup)="onKeyComparar2($event)">
+          <div class="inserir-pokemon">FF</div>
         </div>
       </div> <!--FECHA COMPARACAO-->
 

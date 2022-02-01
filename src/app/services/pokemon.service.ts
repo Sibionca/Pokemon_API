@@ -16,6 +16,14 @@ export class PokemonService {
     getPokemon(url: string){
       return this.httpClient.get<any>(url);
     }
+
+    getPokemonById(id: number){
+      return this.httpClient.get<any>('https://pokeapi.co/api/v2/pokemon/' + id);
+    }
+
+    getPokemonByName(name: string){
+      return this.httpClient.get<any>('https://pokeapi.co/api/v2/pokemon/' + name);
+    }
   }
 
 

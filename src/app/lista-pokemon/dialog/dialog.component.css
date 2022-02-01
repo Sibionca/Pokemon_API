@@ -4,10 +4,27 @@
   font-size: 35px;
 }
 
+.mat-dialog-content{
+  display: flex;
+}
+
 .detalhes {
-  /* display: flex;
-  justify-content: center; */
-  float: right;
+  margin-left: 3%;
+}
+.detalhes input {
+  text-align: right;
+  padding: 2% 5%;  
+}
+
+.ajuste{
+  margin-top: 93%;
+}
+
+.texto{
+  display: flex;
+  margin-left: 3%;  
+  font-size: 20px;
+  align-items: center;
 }
 
 button {

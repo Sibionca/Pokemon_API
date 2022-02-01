@@ -14,9 +14,8 @@
 
 .bg {
   position: absolute;
-
-  width: 100%;
-  height: 100%;
+  width: 100vw;
+  height: 100vh;
   background-image: url(https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/5309d791-2e8a-4774-99f1-e9ee83f9f427/def67da-2691baed-c0d3-43fb-b448-289c5faf2eb3.png/v1/fill/w_1280,h_720,q_80,strp/gengar_pokemon_minimal_wallpaper_by_djraspberry1999_def67da-fullview.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7ImhlaWdodCI6Ijw9NzIwIiwicGF0aCI6IlwvZlwvNTMwOWQ3OTEtMmU4YS00Nzc0LTk5ZjEtZTllZTgzZjlmNDI3XC9kZWY2N2RhLTI2OTFiYWVkLWMwZDMtNDNmYi1iNDQ4LTI4OWM1ZmFmMmViMy5wbmciLCJ3aWR0aCI6Ijw9MTI4MCJ9XV0sImF1ZCI6WyJ1cm46c2VydmljZTppbWFnZS5vcGVyYXRpb25zIl19.vyvqTJQj132GbUwZKkI9VC-DJtCD79jnZtuK7LWZmGs);
   background-repeat: no-repeat;
   background-size: cover;
@@ -169,7 +168,11 @@ button:hover {
 }
 
 .vs img {
-  width: 45%;
-  height: 45%;
-  margin-left: 140px;
+  display: flex;
+  align-items: center;
+  height: auto; 
+  width: auto; 
+  max-width: 200px; 
+  max-height: 200px;
+  margin-top: 5%;
 }

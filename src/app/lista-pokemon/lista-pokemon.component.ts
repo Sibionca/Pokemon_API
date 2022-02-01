@@ -72,33 +72,23 @@ export class ListaPokemonComponent {
 
 
   //PUXA O ID DO POKEMON NA LISTA E ABRE O DIALOG COM O POKEMON ESPECIFICO
-  abrirStats(id:number, Pokemon: any){
-    this.pokemonService.pokemonSelecionado = id;
+  abrirStats(id:number){
+    this.pokemonService.pokemonSelecionado = id;    
     const dialogRef = this.dialog.open(DialogComponent, { panelClass: 'custom-dialog-container' });
+    console.log();
     //dialogRef.componentInstance.pokemonId = id;
   }
 
   //PUXA O POKEMON ATRAVÉS DO NOME NO INPUT E EXECUTA A FUNÇÃO DE ABRIR O DIALOG
-  buscar(pokemonInput: any){
-    // for ( let i = 0; i <= this.pokemons.length; i++){
-    //   if(pokemonInput != this.pokemons[i].name && pokemonInput != this.pokemons[i].number ){
-    //       alert('pokemon invalido');
-    //     console.log(pokemonInput );
-    //     console.log(this.pokemons[i].name )
-    //   }else{
-    //     this.abrirStats(pokemonInput, Pokemon.name);
-    //   }
-    // }
-      // let index = this.pokemons.map(function(e) { return e.name.toUpperCase; }).indexOf(pokemonInput);
-      // this.pokemonService.pokemonSelecionado = index;
-      // const dialogRef = this.dialog.open(DialogComponent, { panelClass: 'custom-dialog-container' });
-      // console.log(index);
-      this.abrirStats(pokemonInput -1, Pokemon.name); // O "-1" FAZ REFERENCIA AO INDICE 0 QUE CONTAVA COMO 1
-    
-    
-    
-    //console.log(this.pokemonInput);
-      
+  buscar(pokemonInput: any){   
+    if(!Number.isNaN(parseInt(this.pokemonInput))){
+      this.abrirStats(pokemonInput - 1); // O "-1" FAZ REFERENCIA AO INDICE 0 QUE CONTAVA COMO 1
+    }else{      
+      this.pokemonService.getPokemonByName(pokemonInput.toLowerCase()).subscribe(
+        data => {this.abrirStats(data.id - 1);},
+        error => {alert('ERRO CARAI')}
+      )
+    }
   }
   
   //FAZ A BUSCA NO INPUT FUNCIONAR AO PRESSIONAR ENTER
@@ -109,15 +99,22 @@ export class ListaPokemonComponent {
     }
   } 
 
-  onKeyComparar(event: KeyboardEvent){
+  onKeyComparar1(event: KeyboardEvent){
     let key = event.which || event.keyCode;
     if (key == 13) {
-       this.inserirPokemon(this.pokemonComparar1, this.pokemonComparar2);
+       this.inserirPokemon(this.pokemonComparar1);
     }
   }
 
-  inserirPokemon(pokemonComparar1: any, pokemonComparar2:any){
-    
+  onKeyComparar2(event: KeyboardEvent){
+    let key = event.which || event.keyCode;
+    if (key == 13) {
+       this.inserirPokemon(this.pokemonComparar2);
+    }
+  }
+
+  inserirPokemon(coco: any){
+    console.log(coco);
   }
 
   //ABRE O CONTAINER DE COMPARAÇÃO DE POKEMON 

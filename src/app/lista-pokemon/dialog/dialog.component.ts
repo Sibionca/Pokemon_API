@@ -11,6 +11,9 @@ import { PokemonService } from 'src/app/services/pokemon.service';
 export class DialogComponent implements OnInit {
 
   public pokemons: Pokemon[];
+  public pokemonStats: any[];
+  public pokemonAPI: any;
+  public pokemonTotal = 0;
   public pokemonId:any = 0;
   
 
@@ -25,7 +28,20 @@ export class DialogComponent implements OnInit {
     //PODER USAR COMO A LISTA DO PARAMETRO A SER PASSADO PARA O APP-POKEMONS
     this.pokemonService.getPokemons().subscribe(
       data => {
-        this.pokemons = data.results;        
+        this.pokemons = data.results;  
+        console.log(data.results)      
+      }      
+    )
+    //PEGAR STATS DO POKEMON SEPARADAMENTE
+    this.pokemonService.getPokemonById(this.pokemonId + 1).subscribe(
+      data => {        
+        this.pokemonStats = data.stats;
+        this.pokemonAPI = data;
+        for (let i = 0; i < this.pokemonStats.length; i++) {
+          this.pokemonTotal += Number(this.pokemonStats[i].base_stat);
+        }
+        this.pokemonAPI.height = (this.pokemonAPI.height/10);
+        this.pokemonAPI.weight = (this.pokemonAPI.weight/10);
       }      
     )
     
