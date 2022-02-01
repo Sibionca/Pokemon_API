@@ -111,6 +111,8 @@ export class ListaPokemonComponent {
   FecharComparar(){
     this.compararPokemons = false;
     this.showResultado = false;
+    this.pokemonComparar1 = '';
+    this.pokemonComparar2 = '';
   }
 
 
@@ -124,6 +126,7 @@ export class ListaPokemonComponent {
 
   //FAZ A BUSCA NO INPUT FUNCIONAR AO PRESSIONAR ENTER
   onKeyComparar2(event: KeyboardEvent){
+
     let key = event.which || event.keyCode;
     if (key == 13) {
        this.inserirPokemon2(this.pokemonComparar2);
@@ -131,9 +134,10 @@ export class ListaPokemonComponent {
   }
 
   inserirPokemon1(poke1: any){
+  
     if(!Number.isNaN(parseInt(poke1))){ // Transformo o valor do input em inteiro e verifico se é number ou string
-      this.pokemonService.getPokemonById(poke1).subscribe(  // transformo a string em minisculo e puxo na API o pokemon
-        data => {this.pokemonComparar1 = data, this.somaStats1(poke1), console.log(this.pokemonComparar1)},
+      this.pokemonService.getPokemonById(poke1).subscribe(   
+        data => {this.pokemonComparar1 = data, this.somaStats1(poke1)}
       )
       
     }else{      
@@ -147,7 +151,7 @@ export class ListaPokemonComponent {
 
   inserirPokemon2(poke2: any){
     if(!Number.isNaN(parseInt(poke2))){ // Transformo o valor do input em inteiro e verifico se é number ou string
-      this.pokemonService.getPokemonById(poke2).subscribe(  // transformo a string em minisculo e puxo na API o pokemon
+      this.pokemonService.getPokemonById(poke2).subscribe(  //  
         data => {this.pokemonComparar2 = data, this.somaStats2(poke2)}
       )
         
@@ -189,16 +193,22 @@ export class ListaPokemonComponent {
     this.showResultado = false;
     if(this.pokemonTotal1 == 0 || this.pokemonTotal2 == 0){
       this.showResultado = true;
-      this.resultado = 'Preencha todos os campos'
+      this.resultado = 'Preencha todos os campos!'
     }else if(this.pokemonTotal1 > this.pokemonTotal2){
       this.showResultado = true;
-      this.resultado = 'O Primeiro pokemon ganhou'
+      this.pokemonComparar1 = this.pokemonComparar1.name[0].toUpperCase() + this.pokemonComparar1.name.slice(1);
+      this.pokemonComparar2 = this.pokemonComparar2.name[0].toUpperCase() + this.pokemonComparar2.name.slice(1);
+      this.resultado = `${this.pokemonComparar1} ganhou!`
     }else if (this.pokemonTotal1 == this.pokemonTotal2){
       this.showResultado = true;
-      this.resultado = 'Empatou'
+      this.resultado = 'Empatou!'
+      this.pokemonComparar1 = this.pokemonComparar1.name[0].toUpperCase() + this.pokemonComparar1.name.slice(1);
+      this.pokemonComparar2 = this.pokemonComparar2.name[0].toUpperCase() + this.pokemonComparar2.name.slice(1);
     }else{
       this.showResultado = true;
-      this.resultado = 'O segundo pokemon ganhou'
+      this.pokemonComparar1 = this.pokemonComparar1.name[0].toUpperCase() + this.pokemonComparar1.name.slice(1);
+      this.pokemonComparar2 = this.pokemonComparar2.name[0].toUpperCase() + this.pokemonComparar2.name.slice(1);
+      this.resultado = `${this.pokemonComparar2} ganhou!`
     }
   }
 
