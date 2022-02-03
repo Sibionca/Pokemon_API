@@ -16,6 +16,7 @@ import { DialogComponent } from './lista-pokemon/dialog/dialog.component';
 import { FormsModule} from '@angular/forms';
 import {MAT_FORM_FIELD_DEFAULT_OPTIONS} from '@angular/material/form-field';
 import { DialogErrorComponent } from './lista-pokemon/dialog-error/dialog-error.component';
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 
 @NgModule({
@@ -36,13 +37,14 @@ import { DialogErrorComponent } from './lista-pokemon/dialog-error/dialog-error.
     MatDialogModule,
     BrowserAnimationsModule,
     MatIconModule,
-    FormsModule
+    FormsModule,
   ],
   providers: [
     PokemonService,
     HttpClientModule,
     {provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: {appearance: 'fill'}}
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class AppModule { }

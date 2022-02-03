@@ -1,4 +1,4 @@
-import { PokemonAPI } from './../Models/PokemonAPI';
+
 import { Component, Input, OnInit} from '@angular/core';
 import { Pokemon } from '../Models/Pokemon';
 import { PokemonService } from '../services/pokemon.service';
@@ -48,26 +48,16 @@ export class PokemonsComponent{
         //SOMA TODOS OS STATUS DO POKEMON E GUARDA NA VARIAVEL
         for (let i = 0; i < this.pokemonAPI.stats.length; i++) {
           this.pokemonTotal += Number(this.pokemonAPI.stats[i].base_stat);
-
         }
-        
-
       }
     )
       // PUXA OS STATUS E ATRIBUI AS INFORMAÇÕES PARA O PROGRASSBAR PARA ATÉ 200
-      setTimeout(() => {
-        for (let i = 0; i < this.pokemonAPI.stats.length; i++) {
+    setTimeout(() => {
+      for (let i = 0; i < this.pokemonAPI.stats.length; i++) {
           var valorBase = this.pokemonAPI.stats[i].base_stat;
           var valorAux = 'width: ' + valorBase/2 + '%';
           $("#pb_" + i).attr("style", valorAux);
-
-        }
-        
-      }, 250);
-      
+      }
+    }, 250);
   }
-  
-  
-
-
 }

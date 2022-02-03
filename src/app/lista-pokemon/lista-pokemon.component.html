@@ -1,11 +1,12 @@
 <!--PAGINA QUE RENDERIZA A LISTA E PUXA O DIALOG COM AS INFORMAÇÕES CONTIDAS NO POKEMON.COMPONENT-->
 <div class="bg">
-  <div class="teste">
+  <div class="TextoInicial">
     <h1>Bem-vindo ao melhor site de busca Pokémon!</h1>           
     <span style="font-size: 18px">Temos disponíveis todas as gerações Pokémon. Caso deseje procurar algum pokémon em específico usar a pesquisa abaixo.</span><br>
     <div class="icon">
       <span style="font-size: 20px">Busque aqui:</span>
-      <input class="input" placeholder="Digite o Id ou nome do Pokémon..."  
+      <input class="input" placeholder="Digite o Id ou nome do Pokémon..."
+        autocomplete="off"  
         name="pokemonInput" 
         [(ngModel)]="pokemonInput"
         (keyup)="onKey($event)"
@@ -15,9 +16,9 @@
   </div> <!--FECHA TESTE-->
   <div class="pai">
     <div class="listas">
-        <div class="geracao1">   
+        <div class="geracao">   
           
-          <h5>Todas as Gerações ( I à VIII )</h5>    
+          <h5>Todas as Gerações ( I a VIII )</h5>    
         
           <ul>
             <li (click)="abrirStats(i)" *ngFor="let pokemon of pokemons; let i = index;">
@@ -39,6 +40,7 @@
       <div class="comparacao">
         <div class="comparacao1"  >
           <input type="text" name="pokemon" id="input1" placeholder="Busque seu Pokémon"
+            autocomplete="off"
             name="pokemonComparar1"
             [(ngModel)]="pokemonComparar1"
             (keyup)="onKeyComparar1($event)"
@@ -60,6 +62,7 @@
 
         <div class="comparacao2">
           <input type="text" name="pokemon" id="input2" placeholder="Busque seu Pokémon"
+            autocomplete="off"
             name="pokemonComparar2"
             [(ngModel)]="pokemonComparar2"
             (keyup)="onKeyComparar2($event)">

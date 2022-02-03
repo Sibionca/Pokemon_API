@@ -1,4 +1,3 @@
-import { PokemonAPI } from './../Models/PokemonAPI';
 import { PokemonService } from './../services/pokemon.service';
 import { Component, OnInit } from '@angular/core';
 import { Pokemon } from '../Models/Pokemon';
@@ -6,9 +5,7 @@ import {MatDialog} from '@angular/material/dialog';
 import { DialogComponent } from './dialog/dialog.component';
 import { DialogErrorComponent } from './dialog-error/dialog-error.component';
 import { MatDialogConfig } from '@angular/material/dialog';
-import {FormControl} from '@angular/forms';
-import {Observable} from 'rxjs';
-import {map, startWith} from 'rxjs/operators';
+
 
 @Component({
   selector: 'app-lista-pokemon',
@@ -29,11 +26,6 @@ export class ListaPokemonComponent {
   public resultado: string;
   public showResultado: boolean = false;
 
-  // myControl = new FormControl();                      AUTO COMPLETE
-  // options: string[] = ['One', 'Two', 'Three'];        A    C
-  // filteredOptions: Observable<string[]>;              A    C
-  
-
   constructor( 
     public pokemonService: PokemonService,
     public dialog: MatDialog
@@ -44,10 +36,6 @@ export class ListaPokemonComponent {
     this.pokemonService.getPokemons().subscribe(
       data => {
         this.pokemons = data.results;
-        // this.filteredOptions = this.myControl.valueChanges.pipe(                    //AUTOCOMPLETE
-        //   startWith(''),
-        //   map(value => this._filter(value)),
-        // );                                                                          // AUTOCOMPLETE
 
         //GUARDA OS RESULTADOS NUM ARRAY POKEMON[]
         //O FOR ABAIXO PERCORRE O ARRAY ITEM A ITEM PARA MUDAR O NOME COLOCANDO LETRA MAIUSCULA NO NOME DO POKEMON 
@@ -62,21 +50,12 @@ export class ListaPokemonComponent {
             } else {
               this.pokemons[i].number = "" + (i+1);
             }
-          }
-          
+          }         
         }                  
       }      
     )
   }
   
-
-  //                                                          TENTATIVA DO AUTOCOMPLETE
-  // public _filter(value: string): string[] {   
-  //   const filterValue = value.toLowerCase();
-    
-  //   return this.options.filter(option => option.toLowerCase().includes(filterValue));
-  // }                                                        AUTOCOMPLETE
-
 
   //PUXA O ID DO POKEMON NA LISTA E ABRE O DIALOG COM O POKEMON ESPECIFICO
   abrirStats(id:number){
@@ -94,12 +73,12 @@ export class ListaPokemonComponent {
     }else{
       if(!Number.isNaN(parseInt(this.pokemonInput))){ // Transformo o valor do input em inteiro e verifico se é number ou string
         this.abrirStats(pokemonInput - 1); // O "-1" FAZ REFERENCIA AO INDICE 0 QUE CONTAVA COMO 1
-        this.showResultado = false; 
+        this.pokemonInput = '';
       }else{      
         this.pokemonService.getPokemonByName(pokemonInput.toLowerCase()).subscribe(  // transformo a string em minisculo e puxo na API o pokemon
           data => {
             this.abrirStats(data.id - 1);
-            this.showResultado = false;
+            this.pokemonInput = '';
           }, //recebe a informação da API e pega o ID para abrir na lista, "-1" por conta do indice 0
           error => {
             const dialogRef = this.dialog.open(DialogErrorComponent, <MatDialogConfig> { panelClass: 'custom-dialogError-container' });
@@ -164,10 +143,10 @@ export class ListaPokemonComponent {
     }else{      
       this.pokemonService.getPokemonByName(poke1.toLowerCase()).subscribe(  // transformo a string em minisculo e puxo na API o pokemon
         data => {
-          this.pokemonModelComparar1 = data, 
+          this.pokemonModelComparar1 = data, //recebe a informação da API e guarda na variavel
           this.somaStats1();      
           this.pokemonComparar1 = ''; 
-        } , //recebe a informação da API e guarda na variavel
+        } , 
         error => {
           const dialogRef = this.dialog.open(DialogErrorComponent, { panelClass: 'custom-dialogError-container' });
           this.pokemonComparar1 = '';
@@ -218,6 +197,7 @@ export class ListaPokemonComponent {
     
   }
 
+    // funcionalidade de "luta" entre os pokemons
   Fight(){
     // this.showResultado = false;
     if(this.pokemonTotal1 == 0 || this.pokemonTotal2 == 0){
