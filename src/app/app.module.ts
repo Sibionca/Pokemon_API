@@ -15,6 +15,7 @@ import { PokemonsComponent } from './pokemons/pokemons.component';
 import { DialogComponent } from './lista-pokemon/dialog/dialog.component';
 import { FormsModule} from '@angular/forms';
 import {MAT_FORM_FIELD_DEFAULT_OPTIONS} from '@angular/material/form-field';
+import { DialogErrorComponent } from './lista-pokemon/dialog-error/dialog-error.component';
 
 
 @NgModule({
@@ -23,7 +24,8 @@ import {MAT_FORM_FIELD_DEFAULT_OPTIONS} from '@angular/material/form-field';
     HeaderComponent,
     ListaPokemonComponent,
     PokemonsComponent,
-    DialogComponent
+    DialogComponent,
+    DialogErrorComponent
   ],
   imports: [
     BrowserModule,

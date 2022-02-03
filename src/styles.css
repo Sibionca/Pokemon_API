@@ -12,3 +12,12 @@ body {
 .custom-dialog-container {
   width: 1000px;
 }
+
+::ng-deep .custom-dialogError-container {
+  width: 25vw;
+  height: 25vh;
+}
+
+.custom-dialogError-container mat-dialog-container.mat-dialog-container {
+  background-color: crimson;
+}

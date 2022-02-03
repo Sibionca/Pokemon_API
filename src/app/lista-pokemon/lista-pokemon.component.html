@@ -2,13 +2,14 @@
 <div class="bg">
   <div class="teste">
     <h1>Bem-vindo ao melhor site de busca Pokémon!</h1>           
-    <span style="font-size: 18px">Temos disponíveis todas as gerações Pokémon separadas por listas. Caso deseje procurar algum pokémon em específico usar o input abaixo.</span><br>
+    <span style="font-size: 18px">Temos disponíveis todas as gerações Pokémon. Caso deseje procurar algum pokémon em específico usar a pesquisa abaixo.</span><br>
     <div class="icon">
       <span style="font-size: 20px">Busque aqui:</span>
       <input class="input" placeholder="Digite o Id ou nome do Pokémon..."  
         name="pokemonInput" 
         [(ngModel)]="pokemonInput"
-        (keyup)="onKey($event)"/>
+        (keyup)="onKey($event)"
+      />
       <mat-icon (click)="buscar(pokemonInput)">search</mat-icon>   
     </div>
   </div> <!--FECHA TESTE-->
@@ -30,21 +31,24 @@
     <div class="PaiComparacao"
       [class.PaiComparacao-on]="compararPokemons"
       [class.PaiComparacao-off]="!compararPokemons">
+
       <div class="btn-fecha"><button  class="btn-fecha" (click)="FecharComparar()">FECHAR</button></div>
       <h2>COMPARE OS ATRIBUTOS DOS POKEMONS E VEJA QUEM É O MAIS FORTE!</h2>
       <h2>AS COMPARAÇÕES SÃO DA SOMA DOS ATRIBUTOS IGNORANDO OS ELEMENTOS</h2>
       
       <div class="comparacao">
-        <div class="comparacao1" >
+        <div class="comparacao1"  >
           <input type="text" name="pokemon" id="input1" placeholder="Busque seu Pokémon"
-          [(ngModel)]="pokemonComparar1"
-          (keyup)="onKeyComparar1($event)">
-          <div class="inserir-pokemon" *ngIf="pokemonComparar1 != undefined">
-            <img [src]="pokemonComparar1.sprites.front_default"  alt="fotinha">
+            name="pokemonComparar1"
+            [(ngModel)]="pokemonComparar1"
+            (keyup)="onKeyComparar1($event)"
+          />
+          <div class="inserir-pokemon" *ngIf="pokemonModelComparar1 != undefined" >
+            <img [src]="pokemonModelComparar1.sprites.front_default"  alt="fotinha">
             <div class="span1">
-              <span>{{pokemonComparar1.name}}: </span>
+              <span style="text-transform: capitalize">{{pokemonModelComparar1.name}} </span>
             </div>
-            <p>Força Total:{{pokemonTotal1}}</p>
+            <p>Força Total: {{pokemonTotal1}}</p>
           </div>
           
         </div> <!--fecha comparacao1-->
@@ -56,14 +60,15 @@
 
         <div class="comparacao2">
           <input type="text" name="pokemon" id="input2" placeholder="Busque seu Pokémon"
-          [(ngModel)]="pokemonComparar2"
-          (keyup)="onKeyComparar2($event)">
-          <div class="inserir-pokemon" *ngIf="pokemonComparar2 != undefined">
-            <img [src]="pokemonComparar2.sprites.front_default" class="img2"  alt="fotinha">
+            name="pokemonComparar2"
+            [(ngModel)]="pokemonComparar2"
+            (keyup)="onKeyComparar2($event)">
+          <div class="inserir-pokemon" *ngIf="pokemonModelComparar2 != undefined">
+            <img [src]="pokemonModelComparar2.sprites.front_default" class="img2"  alt="fotinha">
             <div class="span2"> 
-              <span>{{pokemonComparar2.name}}: </span>
+              <span style="text-transform: capitalize">{{pokemonModelComparar2.name}} </span>
             </div>
-            <p>Força Total:{{pokemonTotal2}}</p>
+            <p>Força Total: {{pokemonTotal2}}</p>
           </div>
         </div>
       </div> <!--FECHA COMPARACAO-->
@@ -78,7 +83,7 @@
       <div class="resultado"
       [class.resultado-on]="showResultado"
       [class.resultado-off]="!showResultado">
-        {{resultado}}
+        <span style="text-transform: capitalize">{{resultado}}</span>
       </div>
 
     </div> <!--fecha bottom-->

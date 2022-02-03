@@ -1,3 +1,8 @@
+body,
+html {
+  height: 100%;
+}
+
 .teste {
   margin: 3% 0;
   width: 100%;
@@ -17,7 +22,7 @@
   width: 100vw;
   height: 100vh;
   background-image: url(https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/5309d791-2e8a-4774-99f1-e9ee83f9f427/def67da-2691baed-c0d3-43fb-b448-289c5faf2eb3.png/v1/fill/w_1280,h_720,q_80,strp/gengar_pokemon_minimal_wallpaper_by_djraspberry1999_def67da-fullview.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7ImhlaWdodCI6Ijw9NzIwIiwicGF0aCI6IlwvZlwvNTMwOWQ3OTEtMmU4YS00Nzc0LTk5ZjEtZTllZTgzZjlmNDI3XC9kZWY2N2RhLTI2OTFiYWVkLWMwZDMtNDNmYi1iNDQ4LTI4OWM1ZmFmMmViMy5wbmciLCJ3aWR0aCI6Ijw9MTI4MCJ9XV0sImF1ZCI6WyJ1cm46c2VydmljZTppbWFnZS5vcGVyYXRpb25zIl19.vyvqTJQj132GbUwZKkI9VC-DJtCD79jnZtuK7LWZmGs);
-  background-repeat: no-repeat;
+  /* background-repeat: no-repeat; */
   background-size: cover;
   background-position: center;
 }
@@ -172,10 +177,10 @@ button:hover {
 }
 
 .inserir-pokemon {
-  background-color: darkgreen;
+  background-color: rgba(12, 12, 12, 0.775);
   width: 175px;
   margin-top: 10px;
-  /*background-image: url(https://media.istockphoto.com/photos/high-res-macro-photo-of-abstract-pastel-iridescent-holographic-foil-picture-id1197279546?s=612x612);*/
+  /* background-image: url(https://media.istockphoto.com/photos/high-res-macro-photo-of-abstract-pastel-iridescent-holographic-foil-picture-id1197279546?s=612x612); */
   border-radius: 3%;
   background-position: center;
   color: #f7de3f;
@@ -203,8 +208,7 @@ button:hover {
 
 .fight {
   padding: 9px;
-  margin-left: 75px;
-  margin-bottom: 5px;
+  margin: 10px 0 5px 75px;
 }
 
 .bottom {
@@ -226,10 +230,6 @@ button:hover {
   border: 1px solid black;
   font-size: 20px;
 }
-
-/* .resultado-on {
-  display: flex;
-} */
 
 .resultado-off {
   display: none;

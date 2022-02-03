@@ -4,6 +4,8 @@ import { Component, OnInit } from '@angular/core';
 import { Pokemon } from '../Models/Pokemon';
 import {MatDialog} from '@angular/material/dialog';
 import { DialogComponent } from './dialog/dialog.component';
+import { DialogErrorComponent } from './dialog-error/dialog-error.component';
+import { MatDialogConfig } from '@angular/material/dialog';
 import {FormControl} from '@angular/forms';
 import {Observable} from 'rxjs';
 import {map, startWith} from 'rxjs/operators';
@@ -20,6 +22,8 @@ export class ListaPokemonComponent {
   public compararPokemons: boolean = false;
   public pokemonComparar1: any;
   public pokemonComparar2: any;
+  public pokemonModelComparar1: any;
+  public pokemonModelComparar2: any;
   public pokemonTotal1: number = 0;
   public pokemonTotal2: number = 0;
   public resultado: string;
@@ -79,18 +83,30 @@ export class ListaPokemonComponent {
     this.pokemonService.pokemonSelecionado = id;    
     const dialogRef = this.dialog.open(DialogComponent, { panelClass: 'custom-dialog-container' });
     console.log();
-    //dialogRef.componentInstance.pokemonId = id;
+    
   }
 
   //PUXA O POKEMON ATRAVÉS DO NOME NO INPUT E EXECUTA A FUNÇÃO DE ABRIR O DIALOG
   buscar(pokemonInput: any){   
-    if(!Number.isNaN(parseInt(this.pokemonInput))){ // Transformo o valor do input em inteiro e verifico se é number ou string
-      this.abrirStats(pokemonInput - 1); // O "-1" FAZ REFERENCIA AO INDICE 0 QUE CONTAVA COMO 1
-    }else{      
-      this.pokemonService.getPokemonByName(pokemonInput.toLowerCase()).subscribe(  // transformo a string em minisculo e puxo na API o pokemon
-        data => {this.abrirStats(data.id - 1);}, //recebe a informação da API e pega o ID para abrir na lista, "-1" por conta do indice 0
-        error => {alert('ERRO CARAI')}
-      )
+    if(pokemonInput > 898){
+      const dialogRef = this.dialog.open(DialogErrorComponent, <MatDialogConfig> { panelClass: 'custom-dialogError-container' });
+      
+    }else{
+      if(!Number.isNaN(parseInt(this.pokemonInput))){ // Transformo o valor do input em inteiro e verifico se é number ou string
+        this.abrirStats(pokemonInput - 1); // O "-1" FAZ REFERENCIA AO INDICE 0 QUE CONTAVA COMO 1
+        this.showResultado = false; 
+      }else{      
+        this.pokemonService.getPokemonByName(pokemonInput.toLowerCase()).subscribe(  // transformo a string em minisculo e puxo na API o pokemon
+          data => {
+            this.abrirStats(data.id - 1);
+            this.showResultado = false;
+          }, //recebe a informação da API e pega o ID para abrir na lista, "-1" por conta do indice 0
+          error => {
+            const dialogRef = this.dialog.open(DialogErrorComponent, <MatDialogConfig> { panelClass: 'custom-dialogError-container' });
+            this.pokemonInput = '';
+          }
+        )
+      }
     }
   }
   
@@ -113,37 +129,49 @@ export class ListaPokemonComponent {
     this.showResultado = false;
     this.pokemonComparar1 = '';
     this.pokemonComparar2 = '';
+    this.pokemonModelComparar1 = undefined;
+    this.pokemonModelComparar2= undefined;
+    this.pokemonTotal1 = 0;
+    this.pokemonTotal2 = 0;
   }
 
 
   //FAZ A BUSCA NO INPUT FUNCIONAR AO PRESSIONAR ENTER
   onKeyComparar1(event: KeyboardEvent){
-    let key = event.which || event.keyCode;
-    if (key == 13) {
+    let key = event.key;
+    if (key == 'Enter' && this.pokemonComparar1 != '') {
        this.inserirPokemon1(this.pokemonComparar1);
     }
   }
 
   //FAZ A BUSCA NO INPUT FUNCIONAR AO PRESSIONAR ENTER
   onKeyComparar2(event: KeyboardEvent){
-
-    let key = event.which || event.keyCode;
-    if (key == 13) {
+    let key = event.key;
+    if (key == 'Enter' && this.pokemonComparar2 != '') {
        this.inserirPokemon2(this.pokemonComparar2);
     }
   }
 
   inserirPokemon1(poke1: any){
-  
     if(!Number.isNaN(parseInt(poke1))){ // Transformo o valor do input em inteiro e verifico se é number ou string
       this.pokemonService.getPokemonById(poke1).subscribe(   
-        data => {this.pokemonComparar1 = data, this.somaStats1(poke1)}
-      )
-      
+        data => {
+          this.pokemonModelComparar1 = data; 
+          this.somaStats1();     
+          this.pokemonComparar1 = ''; 
+        }
+      )     
     }else{      
       this.pokemonService.getPokemonByName(poke1.toLowerCase()).subscribe(  // transformo a string em minisculo e puxo na API o pokemon
-        data => {this.pokemonComparar1 = data, this.somaStats1(poke1)} , //recebe a informação da API e guarda na variavel
-        error => {alert('ERRO CARAI')}
+        data => {
+          this.pokemonModelComparar1 = data, 
+          this.somaStats1();      
+          this.pokemonComparar1 = ''; 
+        } , //recebe a informação da API e guarda na variavel
+        error => {
+          const dialogRef = this.dialog.open(DialogErrorComponent, { panelClass: 'custom-dialogError-container' });
+          this.pokemonComparar1 = '';
+        }
         
       )
     }
@@ -151,64 +179,59 @@ export class ListaPokemonComponent {
 
   inserirPokemon2(poke2: any){
     if(!Number.isNaN(parseInt(poke2))){ // Transformo o valor do input em inteiro e verifico se é number ou string
-      this.pokemonService.getPokemonById(poke2).subscribe(  //  
-        data => {this.pokemonComparar2 = data, this.somaStats2(poke2)}
+      this.pokemonService.getPokemonById(poke2).subscribe(   
+        data => {
+          this.pokemonModelComparar2 = data;
+           this.somaStats2();   
+           this.pokemonComparar2 = '';      
+          }
       )
-        
-        
     }else{      
       this.pokemonService.getPokemonByName(poke2.toLowerCase()).subscribe(  // transformo a string em minisculo e puxo na API o pokemon
-        data => {this.pokemonComparar2 = data, this.somaStats2(poke2)} , //recebe a informação da API e guarda na variavel
-        error => {alert('ERRO CARAI')}
-        
+        data => {
+          this.pokemonModelComparar2 = data;
+           this.somaStats2();      
+           this.pokemonComparar2 = '';    
+          } ,
+        error => {
+          const dialogRef = this.dialog.open(DialogErrorComponent, { panelClass: 'custom-dialogError-container' });
+          this.pokemonComparar2 = '';
+        }      
       )
     }
   }
 
-  somaStats1(poke1: any){
+  somaStats1(){
     this.pokemonTotal1 = 0; // RESETA OS STATUS PARA NAO SOMAR EM UMA NOVA BUSCA
-    this.pokemonService.getPokemonById(poke1).subscribe( 
-      data => {poke1 = data}
-    )
-    for (let i = 0; i < this.pokemonComparar1.stats.length; i++) {
-      this.pokemonTotal1 += Number(this.pokemonComparar1.stats[i].base_stat);
-
+    for (let i = 0; i < this.pokemonModelComparar1.stats.length; i++) {
+      this.pokemonTotal1 += Number(this.pokemonModelComparar1.stats[i].base_stat);
     }
-    console.log(this.pokemonTotal1);
+  
   }
 
-  somaStats2(poke2: any){
+  somaStats2(){
     this.pokemonTotal2 = 0;
-    this.pokemonService.getPokemonById(poke2).subscribe( 
-      data => {poke2 = data}
-    )
-    for (let i = 0; i < this.pokemonComparar2.stats.length; i++) {
-      this.pokemonTotal2 += Number(this.pokemonComparar2.stats[i].base_stat);
+    for (let i = 0; i < this.pokemonModelComparar2.stats.length; i++) {
+      this.pokemonTotal2 += Number(this.pokemonModelComparar2.stats[i].base_stat);
 
     }
-    console.log(this.pokemonTotal2);
+    
   }
 
   Fight(){
-    this.showResultado = false;
+    // this.showResultado = false;
     if(this.pokemonTotal1 == 0 || this.pokemonTotal2 == 0){
       this.showResultado = true;
       this.resultado = 'Preencha todos os campos!'
     }else if(this.pokemonTotal1 > this.pokemonTotal2){
       this.showResultado = true;
-      this.pokemonComparar1 = this.pokemonComparar1.name[0].toUpperCase() + this.pokemonComparar1.name.slice(1);
-      this.pokemonComparar2 = this.pokemonComparar2.name[0].toUpperCase() + this.pokemonComparar2.name.slice(1);
-      this.resultado = `${this.pokemonComparar1} ganhou!`
+      this.resultado = `${this.pokemonModelComparar1.name} ganhou!`
     }else if (this.pokemonTotal1 == this.pokemonTotal2){
       this.showResultado = true;
       this.resultado = 'Empatou!'
-      this.pokemonComparar1 = this.pokemonComparar1.name[0].toUpperCase() + this.pokemonComparar1.name.slice(1);
-      this.pokemonComparar2 = this.pokemonComparar2.name[0].toUpperCase() + this.pokemonComparar2.name.slice(1);
     }else{
       this.showResultado = true;
-      this.pokemonComparar1 = this.pokemonComparar1.name[0].toUpperCase() + this.pokemonComparar1.name.slice(1);
-      this.pokemonComparar2 = this.pokemonComparar2.name[0].toUpperCase() + this.pokemonComparar2.name.slice(1);
-      this.resultado = `${this.pokemonComparar2} ganhou!`
+      this.resultado = `${this.pokemonModelComparar2.name} ganhou!`
     }
   }
 
